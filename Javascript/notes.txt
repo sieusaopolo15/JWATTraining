@@ -20,26 +20,30 @@ ES5: Callback (gọi lại)
 	- Khi callback thì hàm nhận đối số sẽ thực hiện trước sau đó mới hàm truyền vào sẽ thực hiện sau khi biến truyền vào được gọi
 	
 ES6: Promise
-	- Khi nào cần sử dụng: được sử dụng khi xảy ra trường hợp callback hell (pyramid of doom) hoặc sử dụng cho việc hiển thị kết quả thành công hoặc bắt lỗi
+	- Khi nào cần sử dụng: được sử dụng khi xảy ra trường hợp callback hell (pyramid of doom) hoặc xử lý những vấn đề liên quan tới bất đồng bộ
 	- Khái niệm: là một đối tượng sẽ trả về một giá trị trong tương lai.
-
-Chú thích:
-	- callback hell: là một cách code không tối ưu, hàm lồng hàm và nhiều hàm lồng nhau, ví dụ:
-		function a(param){
-			param();
-		}
-		function b(param){
-			param();
-		}
-		function c(param){
-			param();
-		}
-		function main(){
-			a(function(){
-				b(function(){
-					c(function(){
-						console.log("Ối giời ơi !!");
+	- Bao gồm 3 trạng thái:
+		+ Pending (đang chờ)
+		+ Fullfiled (thành công)
+		+ Reject (thất bại)
+	- Khi gặp lỗi "Uncaught (in promise)" tức là không xử lý lỗi
+	-Chú thích:
+		+ callback hell: là một cách code không tối ưu, hàm lồng hàm và nhiều hàm lồng nhau, ví dụ:
+			function a(param){
+				param();
+			}
+			function b(param){
+				param();
+			}
+			function c(param){
+				param();
+			}
+			function main(){
+				a(function(){
+					b(function(){
+						c(function(){
+							console.log("Ối giời ơi !!");
+						});
 					});
 				});
-			});
-		}
+			}
