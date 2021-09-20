@@ -1,0 +1,21 @@
+hoisting: move các biến var lên trên cùng
+for in: lặp các thuộc tính của một Object
+Rest parameter: toán tử lan tràn (Destructive Object)
+
+let, var: function scope
+let: chỉ được khai báo một lần
+var: khai báo được nhiều lần
+
+update: vùng nhớ không phải biến khởi tạo
+assign: gán
+
+Muốn chất lượng của sản phẩm nâng cao thì phải nắm được business
+Dưới db không thiết kế constraint
+
+Phải luôn tự giác update các requirements mà anh Hoàng giao và phải tự giác chủ động nói với anh Hoàng khi có vấn đề xảy ra
+
+To do: 
+	-ES5: callback ?
+	-ES6: promise ? async await ? dùng mấy cái này ở trường hợp nào và khi nào dùng ?
+	-UI Demo
+	-learn more git commands

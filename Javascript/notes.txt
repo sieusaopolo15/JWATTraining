@@ -1,0 +1,24 @@
+ES5: Callback (gọi lại)
+	- Khái niệm: nó là hàm được truyền qua đối số khi gọi một hàm khác hoặc hiểu theo một cách khác là khi thoả mãn hai điều kiện:
+		+ Là hàm
+		+ Được truyền qua đối số
+		+ Được gọi lại trong hàm nhận đối số
+	  => Là callback
+	- Ví dụ:
+		function a(param){
+			if(typeof param == 'function'){
+				param('Hello World'); //Khi đối số truyền vào không phải là function sẽ bị lỗi param is not a function
+			}
+			else{
+				console.log(param);
+			}
+		}
+		function b(value){
+			console.log("Value: ", value);
+		}
+		a(b);
+	- Khi callback thì hàm nhận đối số sẽ thực hiện trước sau đó mới hàm truyền vào sẽ thực hiện sau khi biến truyền vào được gọi
+	
+ES6: Promise
+	- Khái niệm: 
+	- Cách hoạt động:

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="Description" content="Enter your description here" />
+
+    <!-- WEBIX UI -->
+    <link
+      rel="stylesheet"
+      href="../assets/webix.css"
+      type="text/css"
+      charset="utf-8"
+    />
+    <script
+      src="../assets/webix.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css"
+      type="text/css"
+      media="screen"
+      charset="utf-8"
+    />
+
+    <title>Lesson 3</title>
+    <style>
+      .my_style .webix_hcell {
+        background: #009966;
+        color: white;
+        font-weight: bold;
+      }
+      .my_style .webix_ss_header .webix_hcell {
+        border-right: 1px solid #009966;
+      }
+      .my_style .webix_column {
+        font-style: italic;
+        background: #ddffdd;
+      }
+      .my_style .webix_column > div {
+        border-color: #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+        var grid_data = [
+          { rank: 1, title: "The Shawshank Redemption", year: 1994, votes: 678790, rating:  9.5 },
+          { rank: 2, title: "The Godfather", year: 1972, votes: 511495, rating:  9.5 },
+          { rank: 3, title: "The Godfather: Part II", year: 1974, votes: 319352, rating:  9.5 },
+          { rank: 4, title: "The Good, the Bad and the Ugly", year: 1966, votes: 213030, rating:  9.5 },
+          { rank: 5, title: "My Fair Lady", year: 1964, votes: 533848, rating:  9.5 },
+          { rank: 6, title: "12 Angry Men", year: 1957, votes: 164558, rating:  9.5 },
+        ];
+		//DATATABLE WITH CSS
+      //   webix.ui({
+      //     view: "datatable",
+      //     css: "my_style",
+      //     columns: [
+      //       { id: "rank", header: "", css: "rank", width: 50 },
+      //       { id: "title", header: "Film title", width: 250 },
+      //       { id: "year", header: "Released", width: 80 },
+      //       { id: "votes", header: "Votes", width: 100 },
+      //     ],
+      //     data: grid_data,
+      //     autowidth: true,
+      //     autoheight: true,
+      //   });
+
+		//DATATABLE WITH FORM
+      webix.ui({
+        view: "scrollview",
+        scroll: "y",
+        body: {
+          rows: [
+            { view: "datatable", id: "datatable1", autoConfig: true, scrollX: false, autoheight: true, data: grid_data },
+            {
+              cols: [
+                {
+                  view: "form",
+                  width: 400,
+                  id: "form1",
+                  elements: [
+                    { view: "text", name: "title", label: "Title" },
+                    { view: "text", name: "year", label: "Year" },
+                    { view: "text", name: "votes", label: "Votes" },
+                    { view: "text", name: "rating", label: "Rating" },
+                    { view: "text", name: "rank", label: "Rank" },
+                    {
+                      view: "button",
+                      value: "Save",
+                      click: function () {
+                        const v1 = $$("form1").getValues();
+                        $$("form1").save();
+                      },
+                    },
+                  ],
+                },
+                {
+                  rows: [
+                    {
+                      template: "Updated data",
+                      type: "header",
+                      borderless: true,
+                    },
+                    { view: "textarea", id: "textarea1", height: 245 },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      });
+
+      $$("form1").bind("datatable1");
+
+    //   $$("form1").attachEvent("onBindApply", function () {
+    //     webix.message("Bind applied");
+    //   });
+      $$("datatable1").attachEvent("onBindUpdate", function () {
+        webix.message("Data updated in the master");
+
+        const values = $$("form1").getDirtyValues();
+        $$("textarea1").setValue(JSON.stringify(values, "", "\t"));
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="Description" content="Enter your description here" />
+
+    <!-- WEBIX UI -->
+    <link rel="stylesheet" href="../assets/webix.css" type="text/css" charset="utf-8" />
+    <script src="../assets/webix.js" type="text/javascript" charset="utf-8"></script>
+
+    <title>Lesson 2</title>
+  </head>
+  <body>
+    <!-- Test A -->
+    <script type="text/javascript" charset="utf-8">
+      var filmset = [
+        { id: 1, title: "The Shawshank Redemption", year: 1994 },
+        { id: 2, title: "The Godfather", year: 1972 },
+        { id: 3, title: "The Godfather: Part II", year: 1974 },
+        { id: 4, title: "The Good, the Bad and the Ugly", year: 1966 },
+        { id: 5, title: "My Fair Lady", year: 1964 },
+        { id: 6, title: "12 Angry Men", year: 1957 },
+        { id: 7, title: "11 monkeys", year: 1957 },
+      ];
+
+      function save_row() {
+        let value = $$("myform").getValues();
+		console.log(filmset.size);
+        if (value.id){ 
+			$$("mylist").updateItem(value.id, value);
+		} else { 
+			$$("mylist").add(value);
+		}
+      }
+
+      function delete_row() {
+        let id = $$("mylist").getSelectedId(); //returns the ID of selected item
+        $$("mylist").remove(id);
+
+        webix.confirm({
+          title: "Delete", // the text of the box header
+          text: "Are you sure you want to delete the selected item?",
+          callback: function (result) {
+            if (result) {
+              $$("mylist").remove(id);
+            }
+          },
+        });
+      }
+
+      webix.ui({
+        type: "line",
+
+        rows: [
+          {
+            view: "toolbar",
+            elements: [
+              { view: "button", value: "Save", width: 70, click: save_row },
+              { view: "button", value: "Delete", width: 70, click: delete_row },
+              {
+                view: "button",
+                value: "Clear",
+                width: 75,
+                click: () => $$("myform").clear(),
+              },
+            ],
+          },
+          {
+            cols: [
+              {
+                view: "form",
+                id: "myform",
+                width: 400,
+                elements: [
+                  {
+                    view: "text",
+                    name: "title",
+                    label: "Title",
+                    placeholder: "Movie title...",
+                    width: 280,
+                    align: "left",
+                  },
+                  {
+                    view: "text",
+                    label: "Year",
+                    name: "year",
+                    placeholder: "Movie year...",
+                    width: 280,
+                    align: "left",
+                  },
+                ],
+              },
+              {
+                view: "list",
+                id: "mylist",
+                template: "#title# - #year#",
+                select: true,
+                width: 300,
+                data: filmset,
+              },
+            ],
+          },
+        ],
+      });
+    </script>
+  </body>
+</html>
