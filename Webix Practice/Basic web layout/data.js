@@ -7,3 +7,8 @@ var filmset = [
         { id: 6, title: "12 Angry Men", year: 1957, rating: 8.5, vote: 655511 },
         { id: 7, title: "11 monkeys", year: 1957, rating: 8.4, vote: 655512 },
     ];
+
+var users = [
+    { id: 1, username: "huynhtuandat", password: "123456" },
+    { id: 2, username: "nguyenvana", password: "123456" },
+]

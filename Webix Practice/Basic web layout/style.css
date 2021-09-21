@@ -2,3 +2,7 @@
     max-width: 950px;
     margin: auto;
 }
+
+.webix-header.app-header{
+    text-align: center;
+}
