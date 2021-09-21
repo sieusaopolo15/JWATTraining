@@ -9,6 +9,6 @@ var filmset = [
     ];
 
 var users = [
-    { id: 1, username: "huynhtuandat", password: "123456" },
-    { id: 2, username: "nguyenvana", password: "123456" },
+    { id: 1, username: "huynhtuandat", password: "123456", role: "admin" },
+    { id: 2, username: "nguyenvana", password: "123456", role: "employee" },
 ]

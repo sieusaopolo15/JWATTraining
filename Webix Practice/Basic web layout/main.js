@@ -2,6 +2,10 @@ var header = {
     type: "header", template: "Simple App", css: "webix-header app-header"
 };
 
+var footer = {
+    type: "header", template: "Footer", css: "webix-header app-header"
+};
+
 var datatable = {
     view: "datatable", id: "datatable1",
     columns: [
@@ -13,6 +17,18 @@ var datatable = {
     data: filmset
 }
 
+var userDatatable = {
+    view: "datatable", id: "datatable1",
+    columns: [
+        { id: "id", header: "#", width: 40 },
+        { id: "username", header: "Username", fillspace: true },
+        { id: "role", header: "Role", width: 100 },
+    ],
+    select: true, autoheight: true,
+    data: users
+}
+
+//DATATABLE FORM
 var datatableForm = {
     view: "form", id: "form1", scroll: false,
     elements: [
@@ -40,6 +56,7 @@ var datatableForm = {
         },
     ]
 }
+//
 
 var loginForm = {
     view: "form", id: "form2",
@@ -53,8 +70,17 @@ var loginForm = {
                     view: "button", value: "Login", click: function(){
                         if($$("form2").validate()){
                             const value = $$("form2").getValues();
-                            console.log(value);
-                            console.log(`Welcome ${value.username}`);
+                            const data = users.find(function(user){
+                                return value.username == user.username;
+                            });
+                            if(data.role == "admin"){
+                                $$("side_menu").showItem("usermnt");
+                            }
+                            $$("side_menu").showItem("logout");
+                            $$("side_menu").hideItem("login");
+                            $$("content").removeView("login");
+                            $$("content").addView(grid);
+                            $$("form1").bind("datatable1");
                         }
                     }
                 },
@@ -102,7 +128,8 @@ var signUpForm = {
                             const data = {
                                 id: users.length - 1,
                                 username: value.username,
-                                password: value.password
+                                password: value.password,
+                                role: "employee"
                             };
                             users.push(data);
                             console.log(users);
@@ -144,12 +171,22 @@ var signUpForm = {
     }
 }
 
+//DATATABLE AND USER MANAGEMENT
 var grid = {
     id: "grid",
     rows: [
         datatable, datatableForm
     ]
 }
+var grid2 = {
+    id: "grid2",
+    rows: [
+        userDatatable
+    ]
+}
+//
+
+
 
 var login = {
     id: "login",
@@ -165,22 +202,40 @@ var login = {
 }
 
 var menu = {
-    view: "menu", id: "side menu", css: "side_menu", width: 180, layout: "y", select: true,
+    view: "menu", id: "side_menu", css: "side_menu", width: 180, layout: "y", select: true,
     template: "<span class='webix_icon #icon#'></span> #value#",
     data: [
-        { value: "Login", id: "login", icon: "wxi-user" },
         { value: "Datatable", id: "datatable", icon: "wxi-columns" },
+        { value: "Login", id: "login", icon: "wxi-user" },
+        { value: "User Management", id: "usermnt", icon: "wxi-user" },
+        { value: "Logout", id: "logout", icon: "wxi-door" },
     ],
     on: {
         onMenuItemClick: function(id){
             if(id == 'login'){
                 $$("content").removeView("grid");
-                $$("content").addView(login, 1);
+                $$("content").removeView("usermnt");
+                $$("content").addView(login);
             }
-            else {
+            else if(id == "datatable"){
                 $$("content").removeView("login");
-                $$("content").addView(grid, 2);
+                $$("content").removeView("usermnt");
+                $$("content").addView(grid);
                 $$("form1").bind("datatable1");
+            }
+            else if(id == "usermnt"){
+                $$("content").removeView("login");
+                $$("content").removeView("grid");
+                $$("content").addView(grid2);
+            }
+            else if(id == "logout"){
+                $$("content").removeView("usermnt");
+                $$("content").removeView("grid");
+                $$("content").addView(login);
+
+                $$("side_menu").showItem("login");
+                $$("side_menu").hideItem("logout");
+                $$("side_menu").hideItem("usermnt");
             }
             
         }
@@ -207,8 +262,11 @@ webix.ready(function() {
                 autowidth: true,
                 height: 600,
                 scrollX: false
-            }
+            },
+            footer
         ]
     });
-    
+    $$("side_menu").hideItem("usermnt");
+    $$("side_menu").hideItem("logout");
+    $$("side_menu").select("datatable");
 });
