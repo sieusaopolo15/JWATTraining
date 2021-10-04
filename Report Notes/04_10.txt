@@ -1,0 +1,20 @@
+Material code: không có kí tự đặc biệt
+	- Volume: chỉ cho nhập số
+	- Item No: chỉ cho nhập số
+
+Delete:
+	- Chưa có select thì phải hiển thị đúng message là chưa có select dữ liệu
+
+Update:
+	- Phải select lại dữ liệu khi update một row
+
+Test hết các max length của các field
+
+Empty form - save bị lỗi
+
+thêm message delete cho ui khi không có dữ liệu
+
+Dặn dò:
+1. Nhớ punch in / punch out
+2. Nhớ add điểm của effort point
+3. Nhớ due date của task

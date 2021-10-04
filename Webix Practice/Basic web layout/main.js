@@ -214,22 +214,25 @@ var menu = {
         onMenuItemClick: function(id){
             if(id == 'login'){
                 $$("content").removeView("grid");
+				$$("content").removeView("login");
                 $$("content").removeView("usermnt");
                 $$("content").addView(login);
             }
             else if(id == "datatable"){
+				$$("content").removeView("grid");
                 $$("content").removeView("login");
-                $$("content").removeView("usermnt");
+                $$("content").removeView("grid2");
                 $$("content").addView(grid);
                 $$("form1").bind("datatable1");
             }
             else if(id == "usermnt"){
+				$$("content").removeView("grid2");
                 $$("content").removeView("login");
                 $$("content").removeView("grid");
                 $$("content").addView(grid2);
             }
             else if(id == "logout"){
-                $$("content").removeView("usermnt");
+                $$("content").removeView("grid2");
                 $$("content").removeView("grid");
                 $$("content").addView(login);
 

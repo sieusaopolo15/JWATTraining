@@ -1,0 +1,23 @@
+UI Demo:
+	- Search:
+		+ Trả về đúng với condition
+		+ Phải load đúng với default data trên search option (ví dụ data phải load đúng với ngày mặc định)
+	- 
+
+Nhận xét của anh Hoàng:
+	- Đạt:
+		+ Chức năng
+		+ Design khá ok 
+		+ Sửa thêm một chút về chức năng search
+		+ Chưa sử dụng được các message box mà cty đã sử dụng
+	- Phương:
+		+ Không đúng standard
+		+ Chức năng chưa đúng, chưa rõ
+
+Notes:
+	- Recover material detail form khi ẩn menu
+	- Research về cách gọi đến Database
+	- Các file api nằm trong mapper
+	- Tạo data test, test riêng không thay đổi data đã có sẵn
+	- Tạo trên table hiện có, tuyệt đối không sửa cấu trúc db
+	- 

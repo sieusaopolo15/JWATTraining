@@ -47,3 +47,8 @@ ES6: Promise
 					});
 				});
 			}
+			
+Tìm index của một phần tử trong array:
+	array = [1, 2, 3, 4, 5, 6];
+	const index = array.findIndex(element => element == 1);
+	=> index = 1;

@@ -1,5 +1,4 @@
 function abc(param) {
-    //console.log(typeof param);
     if (typeof param == 'function') {
         param('Hello World');
     }
@@ -21,7 +20,7 @@ var fruit = [
     'Tangerine'
 ];
     //CÁCH 1
-// fruit.map(function(fruti){
+// fruit.map(function(fruit){
 //     console.log(fruit);
 // });
 
@@ -60,5 +59,7 @@ var html = fruit.map2(function (fruit, index) {
     return `<h2>${fruit} - ${index}</h2>`;
 });
 console.log(html);
+
+function 
 
 

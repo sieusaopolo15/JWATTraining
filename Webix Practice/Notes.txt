@@ -1,0 +1,46 @@
+- view: 'datepicker':
+	+ stringResult: nhận dữ liệu true hoặc false. Nếu là true thì dữ liệu trả về của datepicker là string còn không thì là date
+
+- view: 'uploader':
+	+ autosend: nhận dữ liệu true hoặc false. Nếu là true thì sẽ gửi dữ liệu hình ảnh hoặc file ngay lập tức khi chọn xong tệp
+	+ multiple: nhận dữ liệu true hoặc false. Nếu là true thì sẽ chọn được nhiều file cùng một lúc.
+
+- view: 'form':
+	+ rules: 
+		-- key: value
+		=> key tức là form field name, value là tên của rule mình sẽ áp dụng
+		=> Các rules:
+			- isChecked
+			- isEmail
+			- isNotEmpty
+			- isNumber
+			
+- $$('tên_table').parse(tên_dữ_liệu, [tên_dạng_dữ_liệu]): tải data lên table một cách thủ công, ví dụ cú pháp
+	+ let data = [{id: 1, value: 'hello'}, {id: 2, value: 'world'}]
+	+ let data2 = 
+				'<data>
+					<item id='1'>
+						<title>The Lord of the Rings</title>
+						<year>2003</year>
+					</item>
+					<item id='2'>
+						<title>Star Wars: Episode V</title>
+						<year>1980</year>
+					</item>
+				</data>'
+	+ $$('table').clearAll(); //Xoá toàn bộ data có trên table
+	+ $$('table').parse(data); //Nhập lại dữ liệu mới
+	+ $$('table').parse(data2, 'xml');
+
+- $$('tên_form').clearValidation(): Loại bỏ các chữ error trên các field không hợp lệ hoặc vi phạm rules
+
+- webix.extend(target, source_element, [boolean])
+	+ Biến boolean có hay không đều được, nếu là true thì element target sẽ bị ghi đè dữ liệu lên
+	+ Hợp nhất các element lại nhau trả ra target element
+	+ Target element sẽ có các properties của source_element
+	+ Nếu có các properties nào cùng loại thì sẽ lấy cái của thằng target không lấy của source, ví dụ:
+		obj1: {name:"flower", type:"rose", colors: ['red','pink','white','yellow']};
+		obj2: {name:"flower", type:"tulip" };
+		webix.extend(obj2, obj1); => obj2: {name:"flower", type:"tulip", colors: ['red','pink','white','yellow']}
+	+ Thông thường người ta kết hợp một element với một element được tích hợp trong webix như:
+		webix.extend($$("datatable"), webix.ProgressBar);
