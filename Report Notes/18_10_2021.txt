@@ -1,0 +1,10 @@
+Report notes: coding styles, algorithm review
+
+	$$('img').dirty(){
+		message;
+		return;
+	}
+response = await function();
+const { data: data, errCd, message } = response
+
+Tách update và insert riêng ra

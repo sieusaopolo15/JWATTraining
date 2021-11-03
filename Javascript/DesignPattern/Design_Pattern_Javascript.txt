@@ -1,0 +1,120 @@
+1. Creational Design Patterns
+	- Construct pattern:
+		+ Trong construct pattern chỉ duy nhất khai báo một lần hàm constructor()
+		+ Trong ES6 thì việc khai báo là không cần chỉ cần làm như ví dụ dưới là được:
+			class Employee {
+				constructor(name, age, tele) {
+					this.name = name;
+					this.age = age;
+					this.tele;
+				}
+				work () {
+					console.log(this.name + ' is working ! Do not disturb');
+				}
+			}
+			const e = new Employee('Dat', 22, '123456789');
+			console.log(e); // Sẽ in ra Employee { name: 'Dat', age: 2, tele: '123456789' }
+		+ Static function trong một class có ý nghĩa là một hàm thể hiện chức năng riêng biệt của class đó và nó định nghĩa phương thức static cho function đó.
+		 Phương thức tĩnh thường được tạo với mục đích là làm class ấy đa dụng hơn, ví dụ như tạo hoặc clone một object hoặc là việc cấu hình cố định cho việc
+		 khởi tạo hoặc thực hiện một chức năng nào đó sử dụng nhiều lần giữa các class với nhau. Example:
+			class Employee {
+				static company = 'Tuan Dat Company';
+			
+				constructor(name, age, tele, yearOfWork) {
+					this.name = name;
+					this.age = age;
+					this.tele;
+					this.yearOfWork = yearOfWork;
+				}
+				
+				static welcomeNewEmployee (e) {
+					if(e.yearOfWork === 0) {
+						console.log(`Welcome new employee to the company`;
+					}
+					else {
+						console.log(`Good morning to you ${this.name}`);
+					}
+				}
+			}
+			const e = new Employee('Dat', 22, '123456789', 0);
+			const em = new Employee('Dat 1', 22, '123456789', 1)
+			console.log(Employee.company) //Tuan Dat Company
+			console.log(Employee.welcomeNewEmployee(e)) // Welcome new employee to the company
+			console.log(Employee.welcomeNewEmployee(em)) // Good morning to you Dat1
+	- Factory pattern
+		+ Thông thường các class tạo ra object trả về function này sẽ là các class khác nhau nhưng có nhiều điểm giống nhau.
+		+ Factory pattern thường được sử dụng để tạo ra các object có cùng những đặc điểm với nhau và phân biệt với nhau thông qua việc tạo object, ví dụ:
+			const itemFactory = require('./itemFactory');
+			const myLaptop = itemFactory.createItem('Laptop', {
+				ram: 8,
+				hdd: 256,
+				name: "Dat's Asus"
+			});
+
+			const myPC = itemFactory.createItem('PC', {
+				ram: 8,
+				hdd: 1024,
+				name: "Dat's PC",
+				mainboard: 'abc',
+				chip: 'core i5 gen 10th',
+				VGA: '1360 GTX Ti'
+			});
+
+			const myTablet = itemFactory.createItem('Tablet', {
+				ram: 4,
+				hdd: 128,
+				name: "Dat's iPad",
+				network: '4G'
+			});
+	- Prototype pattern:
+		+ Được sử dụng để tạo ra các object trong tình huống cần nâng cao hiệu suất
+		+ Prototype cũng có thể được hiểu là kế thừa bởi vì giữa các object có thể sử dụng lại các biến hoặc hàm chung với nhau. Cho nên khi ta khai báo prototype
+		 thì các biến hoặc hàm này sẽ được sử dụng chung giữa các object
+	- Singleton pattern
+		+ Bắt nguồn từ toán học: 'Trong toán học, 1 singleton còn được gọi là một tập đơn vị, là một tập hợp có đúng một phần tử'. Ví dụ:
+			{null} là một singleton
+		+ Được dùng khi ta chỉ muốn đảm bảo chỉ có duy nhất một object được sinh ra trong toàn hệ thống. Rất thích hợp cho việc cấu hình cho toàn hệ thống. Trong
+		 đó Angular's Service là một ví dụ điển hình mà singleton đang được sử dụng phổ biến hiện nay.
+	- Module pattern:
+		+ Cung cấp khả năng đóng gói dữ liệu với cả thuộc tính và phương thức dạng public/private, giúp tránh xung đột về tên đối với các function ở các script khác
+		 trên trang web.
+		+ Khai báo:
+			var counter = (function () {
+			})();
+			=> Đây là cách viết rút gọn, còn cách viết thực tế là:
+				var functionC = function () {
+				
+				}
+				var counter = functionC();
+		+ Được sử dụng để gom một tập các biến và hàm lại với nhau tồn tại trong một bao đóng. Và các giá trị và hàm tồn tại trong bao đóng là private và chỉ
+		 public khi return, Ví dụ:
+			var countModule = (function(){
+			  var count = 0;
+			  var log = function(funcName) { // <== Private
+				console.log(funcName, count);
+			  }
+			  function increaseFunc() { // <== Private
+				count++;
+				log("increase");
+			  }
+			  function decreaseFunc() { // <== Private
+				count--;
+				log("decrease");
+			  }
+			  function resetFunc() { // <== Private
+				count = 0;
+				log("reset");
+			  }
+			  return {
+				increase: increaseFunc, // <== Public
+				decrease: decreaseFunc, // <== Public
+				reset: resetFunc // <== Public
+			  }
+			})();
+			countModule.increase(); //count = 1
+			countModule.increase(); //count = 2
+			countModule.decrease(); //count = 1
+			countModule.reset(); //count = 0;
+		+ 
+	- Observer pattern:
+		+ 
