@@ -27,3 +27,12 @@ const e = new Employee('Dat', 22, '0902777586');
 console.log(e);
 e.work();
 console.log(Employee.getAll(e));
+
+function SinhVien (name, age, tele) {
+    this.name = name;
+    this.age = age;
+    this.tele = tele;
+}
+
+const s = new SinhVien('Dat', 22, '0902777587');
+console.log(s);

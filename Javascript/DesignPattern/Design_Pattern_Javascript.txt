@@ -115,6 +115,7 @@
 			countModule.increase(); //count = 2
 			countModule.decrease(); //count = 1
 			countModule.reset(); //count = 0;
-		+ 
+		+ Mục đích của việc thiết kế theo Module pattern này là che giấu dữ liệu và các hàm liên quan. Ngoài ra nó cũng giúp ta dễ bảo trì bởi vì tất cả đoạn mã
+		 của một module đều nằm gọn trong một bao đóng giúp ta phân biệt được các module với nhau để dễ dàng bảo trì và sửa chữa.
 	- Observer pattern:
 		+ 

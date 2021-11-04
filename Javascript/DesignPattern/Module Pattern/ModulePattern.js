@@ -39,12 +39,13 @@ var testModule = (function () {
 for (var i = 0; i < 10; i++) {
     testModule.increateCounter();
 }
+console.log(testModule.getCounter());
+testModule.resetCounter();
+console.log(testModule.getCounter());
+console.log(testModule.counter);
 
 // Usage:
 countModule.increase(); // increase 1
 countModule.increase(); // increase 2
 countModule.decrease(); // increase 1
 countModule.reset();    // reset 0
-
-console.log(testModule.getCounter()); // 10 testModule.resetCounter();
-console.log(testModule.getCounter()); // 0 console.log(testModule.counter); // undefined

@@ -18,10 +18,8 @@ class Database {
         this._data = data;
     }
 }
-
-// usage
-const mongo = new Database('mongo');
-console.log(mongo.getData()); // mongo
+const mongo = new Database('sqlserver');
+console.log(mongo.getData());
 
 const mysql = new Database('mysql');
-console.log(mysql.getData()); // mongo
+console.log(mysql.getData());
